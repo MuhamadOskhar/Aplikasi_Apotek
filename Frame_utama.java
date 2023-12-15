@@ -3,21 +3,63 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
+import java.sql.*;
+import javax.swing.JOptionPane;
+import java.awt.HeadlessException;
 /**
  *
  * @author User
  */
-public class Frame_utama extends javax.swing.JDialog {
 
-    /**
-     * Creates new form Frame_utama
-     */
+public class Frame_utama extends javax.swing.JDialog {
+    // Koneksi ke database
+    private static final String JDBC_URL = "jdbc:mysql://localhost:3306/aplikasi_apotek";
+
+   private Connection getConnection() throws SQLException {
+    try {
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        return DriverManager.getConnection(JDBC_URL);
+    } catch (ClassNotFoundException | SQLException e) {
+        throw new SQLException("Failed to connect to the database", e);
+    }
+}
+
     public Frame_utama(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
     }
-
+    // Metode untuk menyimpan data ke database
+    private void saveDataToDatabase() {
+        try {
+            // Validasi input
+            if (jTextField1.getText().isEmpty() || jTextField2.getText().isEmpty() || jTextField3.getText().isEmpty() || jTextField4.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Semua kolom harus diisi", "Input Error", JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+    
+            try (Connection connection = getConnection()) {
+                String query = "INSERT INTO apotek (nama, usia, diagnosis, obat) VALUES (?, ?, ?, ?)";
+                try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+                    preparedStatement.setString(1, jTextField1.getText()); // Nama
+                    preparedStatement.setString(2, jTextField2.getText()); // Usia
+                    preparedStatement.setString(3, jTextField3.getText()); // Diagnosis
+                    preparedStatement.setString(4, jTextField4.getText()); // Obat
+    
+                    int rowsAffected = preparedStatement.executeUpdate();
+                    if (rowsAffected > 0) {
+                        JOptionPane.showMessageDialog(this, "Data berhasil disimpan");
+                    } else {
+                        JOptionPane.showMessageDialog(this, "Gagal menyimpan data", "Database Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        } catch (SQLException | HeadlessException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Terjadi kesalahan saat menyimpan data", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,21 +116,18 @@ public class Frame_utama extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
         jLabel1.setText("Med Shop");
 
-        jTextField1.setText("Nama");
         jTextField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField1ActionPerformed(evt);
             }
         });
 
-        jTextField2.setText("Usia");
         jTextField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField2ActionPerformed(evt);
             }
         });
 
-        jTextField3.setText("Diagnosis");
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -109,7 +148,6 @@ public class Frame_utama extends javax.swing.JDialog {
             }
         });
 
-        jTextField4.setText("Obat Yang Diberi");
         jTextField4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField4ActionPerformed(evt);
@@ -125,7 +163,6 @@ public class Frame_utama extends javax.swing.JDialog {
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("Jk :");
 
-        jTextField5.setText("Jenis Kelamin");
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
@@ -235,19 +272,19 @@ public class Frame_utama extends javax.swing.JDialog {
     }// </editor-fold>                        
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
+        
     }                                           
 
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
+        
     }                                           
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
+        
     }                                           
 
     private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                               
-        // TODO add your handling code here:
+        saveDataToDatabase();
     }                                              
 
     private void jToggleButton2ActionPerformed(java.awt.event.ActionEvent evt) {                                               
@@ -258,15 +295,15 @@ public class Frame_utama extends javax.swing.JDialog {
     }                                              
 
     private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
+        
     }                                           
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
+        
     }                                             
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {                                            
-        // TODO add your handling code here:
+        
     }                                           
 
     /**
