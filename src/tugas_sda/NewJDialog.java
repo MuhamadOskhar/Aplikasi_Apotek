@@ -42,7 +42,7 @@ public class NewJDialog extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Downloads\\Gambar netbeans\\Screenshot_2023-12-12_164303-removebg-preview.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("/home/oskhar/server/myApp/Aplikasi_Apotek/img/netbeans/medshop.png")); // NOI18N
         jLabel2.setText("jLabel2");
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
@@ -128,7 +128,7 @@ public class NewJDialog extends javax.swing.JDialog {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        this.dispose();
-       Halaman_Lihat frame3 = new Halaman_Lihat(null, rootPaneCheckingEnabled);
+       Halaman_Lihat frame3 = new Halaman_Lihat();
        frame3.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 

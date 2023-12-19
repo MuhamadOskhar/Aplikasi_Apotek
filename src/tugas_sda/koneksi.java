@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class koneksi {
     private static final String JDBC_URL = "jdbc:mysql://localhost:3306/aplikasi_apotek";
     private static final String USERNAME = "root"; // Ganti dengan username MySQL Anda
-    private static final String PASSWORD = ""; // Ganti dengan password MySQL Anda
+    private static final String PASSWORD = "tesdoang"; // Ganti dengan password MySQL Anda
 
     public static Connection getConnection() throws SQLException {
         try {

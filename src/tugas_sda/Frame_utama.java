@@ -31,11 +31,11 @@ public class Frame_utama extends javax.swing.JDialog {
             }
 
             try (Connection connection = koneksi.getConnection()) {
-                String query = "INSERT INTO apotek (nama, usia, diagnosis, obat, pasien_darurat) VALUES (?, ?, ?, ?, ?)";
+                String query = "INSERT INTO apotek (nama, usia, konsumsi, obat, pasien_darurat) VALUES (?, ?, ?, ?, ?)";
                 try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                     preparedStatement.setString(1, jTextField1.getText()); // Nama
                     preparedStatement.setString(2, jTextField2.getText()); // Usia
-                    preparedStatement.setString(3, jTextField3.getText()); // Diagnosis
+                    preparedStatement.setString(3, jTextField3.getText()); // Konsumsi
                     preparedStatement.setString(4, jTextField4.getText()); // Obat
                     preparedStatement.setBoolean(5, jRadioButton1.isSelected()); // Pasien Darurat
 
@@ -84,7 +84,7 @@ public class Frame_utama extends javax.swing.JDialog {
         jTextField5 = new javax.swing.JTextField();
 
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Downloads\\Gambar netbeans\\Logo Puskes 2.jpg")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("/home/oskhar/server/myApp/Aplikasi_Apotek/img/netbeans/logo_puskes.jpg")); // NOI18N
         jLabel2.setText("jLabel2");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -150,9 +150,9 @@ public class Frame_utama extends javax.swing.JDialog {
         });
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("Diagnosis :");
+        jLabel6.setText("Konsumsi :");
 
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\User\\Downloads\\Gambar netbeans\\gambar medshop.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon("/home/oskhar/server/myApp/Aplikasi_Apotek/img/netbeans/medshop_icon.png")); // NOI18N
         jLabel8.setText("jLabel8");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
