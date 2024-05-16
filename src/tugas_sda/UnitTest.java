@@ -1,4 +1,5 @@
 package tugas_sda;
+
 import java.sql.Connection;
 
 import java.sql.PreparedStatement;
@@ -15,12 +16,13 @@ public class UnitTest {
         }
         return null; // Mengembalikan null jika tidak ditemukan
     }
+
     public static void main(String[] args) {
         // Buat PriorityQueue untuk menyimpan data dengan prioritas
         PriorityQueue<PatientData> patientQueue = new PriorityQueue<>();
 
         try (Connection connection = koneksi.getConnection()) {
-            String query = "SELECT * FROM apotek ORDER BY created_at DESC";
+            String query = "SELECT * FROM apotek";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {

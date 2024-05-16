@@ -16,7 +16,7 @@ public class Halaman_Lihat extends JFrame {
         List<PatientData> foundPatients = new ArrayList<>();
 
         for (PatientData patientData : patientList) {
-            if (patientData.getNama().toLowerCase().contains(searchName)) {
+            if (patientData.getObat().toLowerCase().contains(searchName)) {
                 foundPatients.add(patientData);
             }
         }
@@ -143,7 +143,7 @@ public class Halaman_Lihat extends JFrame {
         patientQueue = new PriorityQueue<>();
 
         try (Connection connection = koneksi.getConnection()) {
-            String query = "SELECT * FROM apotek ORDER BY created_at DESC";
+            String query = "SELECT * FROM apotek";
             try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
                 try (ResultSet resultSet = preparedStatement.executeQuery()) {
                     while (resultSet.next()) {
